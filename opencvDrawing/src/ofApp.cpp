@@ -42,7 +42,7 @@ void ofApp::update(){
 
 		// find contours which are between the size of 20 pixels and 1/3 the w*h pixels.
 		// also, find holes is set to true so we will get interior contours as well....
-		contourFinder.findContours(myGrayDiff, 20, (340*240)/3, 50, true);
+		contourFinder.findContours(myGrayDiff, 20, (340*240)/3, 1, false);
     }
 
 }
