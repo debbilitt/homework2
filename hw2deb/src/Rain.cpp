@@ -9,7 +9,8 @@ void Rain::setup(float _x, float _y, int _dim){
     dim = _dim;
     
     speedX = ofRandom(-1, 1);
-    speedY = ofRandom(-1, 1);
+    speedY = ofRandom(1, 2);
+    str =  generateString();
     
     color.set(ofRandom(255), ofRandom(255), ofRandom(255));
 }
@@ -29,22 +30,23 @@ void Rain::update(){
         y = 0;
         speedY *= -1;
     } else if(y > ofGetHeight()){
-        y = ofGetHeight();
-        speedY *= -1;
+        y = 0;
+        speedY *= 1;
     }
     
     x+=speedX;
     y+=speedY;
-   
 }
 
-void Rain::checkDistance(ofVec2f centroid){
-    
-    
+char Rain::generateString(){
+    char string[4] = {'R','A','I','N'};
+    char currentChar = string[rand() % 5];
+    return currentChar;
 }
+
 
 void Rain::draw(){
     ofSetColor(color);
    // ofDrawCircle(x, y, dim);
-    ofDrawBitmapString("Rain",x ,y, dim);
+    ofDrawBitmapString(str,x ,y, dim);
 }

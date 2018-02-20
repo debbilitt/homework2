@@ -5,7 +5,7 @@
 #include "ofxOpenCv.h"
 
 #include "RAIN.h"
-#define NRAIN 40
+#define NRAIN 100
 
 
 class ofApp : public ofBaseApp{
