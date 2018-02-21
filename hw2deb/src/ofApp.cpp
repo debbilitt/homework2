@@ -23,16 +23,14 @@ void ofApp::setup(){
 //        rainDrops.push_back(tempRain);				// add it to the vector
 //    }
 
-    
-
-    
-        for(int i=0; i<NRAIN; i++){
-            int size = (i+1) * 10; // defining the size of each ball based on its place in the array
-            int randomX = ofRandom( 0, ofGetWidth() ); //generate a random value bigger than 0 and smaller than our application screen width
-            int randomY = ofRandom( 0, ofGetHeight() ); //generate a random value bigger than 0 and smaller than our application screen height
-    
-            rainDrops[i].setup(randomX, 0, 100);
-        }
+//  
+//        for(int i=0; i<NRAIN; i++){
+//            int size = (i+1) * 10; // defining the size of each ball based on its place in the array
+//            int randomX = ofRandom( 0, ofGetWidth() ); //generate a random value bigger than 0 and smaller than our application screen width
+//            int randomY = ofRandom( 0, ofGetHeight() ); //generate a random value bigger than 0 and smaller than our application screen height
+//    
+//            rainDrops[i].setup(randomX, 0, 100);
+//        }
 
 }
 
@@ -73,10 +71,10 @@ void ofApp::update(){
 //        rainDrops[i].update();
 //    }
 
-    
-   for(int i=0; i<NRAIN; i++){
-             rainDrops[i].update();
-      }
+//    
+//   for(int i=0; i<NRAIN; i++){
+//             rainDrops[i].update();
+//      }
 }
 
 //--------------------------------------------------------------
@@ -114,43 +112,42 @@ void ofApp::draw(){
 //           rainDrops[i].draw();
 //    }
     
-
+    
+    
 
 //    //draw some rain using NRAIN
-    for(int i=0; i<NRAIN; i++){
-        rainDrops[i].draw();
-        
-        
-        //from Shuai... trying to combine
-        float locX = letterPosX + ( i * letterXSpace);
-        float locY = letterPosY[i];
-        
-        ofDrawBitmapString(letters[i], letterPosX,letterPosY[i]);
-        
-        letterPosX += letterXSpace;
-        
-        float pixBrightness = pix.getColor(locX,locY).getBrightness();
-        
-        
-        if(letterPosY[i] >= ofGetHeight() - 1)
-        {
-            letterPosY[i] = 0;
-        } else if(pixBrightness < threshold)
-        {
-            if(letterPosY[i] > 10)
-            {
-                letterPosY[i]-=letterSpeed;
-            }
-        }
-        else
-        {
-            letterPosY[i]+=letterSpeed;
-        }//end shuai's code
-    }
+//    for(int i=0; i<NRAIN; i++){
+//        rainDrops[i].draw();
+//        
+//        
+//        //from Shuai... trying to combine
+//        float locX = letterPosX + ( i * letterXSpace);
+//        float locY = letterPosY[i];
+//        
+//        ofDrawBitmapString(letters[i], letterPosX,letterPosY[i]);
+//        
+//        letterPosX += letterXSpace;
+//        
+//        float pixBrightness = pix.getColor(locX,locY).getBrightness();
+//        
+//        
+//        if(letterPosY[i] >= ofGetHeight() - 1)
+//        {
+//            letterPosY[i] = 0;
+//        } else if(pixBrightness < threshold)
+//        {
+//            if(letterPosY[i] > 10)
+//            {
+//                letterPosY[i]-=letterSpeed;
+//            }
+//        }
+//        else
+//        {
+//            letterPosY[i]+=letterSpeed;
+//        }//end shuai's code
+//    }
 
-    
-    
-    
+
   
 	ofPopMatrix();
 

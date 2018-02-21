@@ -36,11 +36,19 @@ void Rain::update(){
     
     x+=speedX;
     y+=speedY;
+    
+
+
+    
+    
+    
+    
+    
 }
 
 char Rain::generateString(){
     char string[4] = {'R','A','I','N'};
-    char currentChar = string[rand() % 5];
+    char currentChar = string[rand() % 4];
     return currentChar;
 }
 
@@ -48,5 +56,6 @@ char Rain::generateString(){
 void Rain::draw(){
     ofSetColor(color);
    // ofDrawCircle(x, y, dim);
+    
     ofDrawBitmapString(str,x ,y, dim);
 }
