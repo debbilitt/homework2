@@ -31,20 +31,36 @@ class ofApp : public ofBaseApp{
         ofVideoGrabber 		vidGrabber;
 	
         ofxCvColorImage			myColorImg;
-
+        ofPixels                pix;
         ofxCvGrayscaleImage 	myGrayImage;
 		ofxCvGrayscaleImage 	myBackground;
 		ofxCvGrayscaleImage 	myGrayDiff;
 
         ofxCvContourFinder 	contourFinder;
-
+    
+    //textrain variable
+    
+    float letterSpeed = 1;
+    float letterPosX = 0;
+    float letterPosY [NRAIN] = {};
+    float letterXSpace;
+    float threshold = 80.0;
+    char letters [NRAIN] = {};
+    
+  
     
     
-		int 				threshold;
+//		int 				threshold;
 		bool				bLearnBackground;
 		bool				bShowVideo = true;
     
         Rain rainDrops[NRAIN];
+    
+       // vector <Rain> rainDrops;
+    
+    
+        ofVec2f p;
+    
 
 
 };

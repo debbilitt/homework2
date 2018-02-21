@@ -11,6 +11,7 @@ public: // place public functions or variables declarations here
     void draw();    // draw method, this where you'll do the object's drawing
 //    void checkDistance(); //check its distance to the other vector
     char generateString();
+    void fallingLetters();
     // variables
     float x;        // position
     float y;
@@ -21,6 +22,16 @@ public: // place public functions or variables declarations here
     char str;
     
     ofTrueTypeFont myfont;
+    
+    //textrain variable
+//    
+//    float letterSpeed = 1;
+//    float letterPosX = 0;
+//    float letterPosY [NRAIN] = {};
+//    float letterXSpace;
+//    float threshold = 80.0;
+//     char letters [NRAIN] = {};
+
     
     
     Rain();  // constructor - used to initialize an object, if no properties are passed the program sets them to the default value
