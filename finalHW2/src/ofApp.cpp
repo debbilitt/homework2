@@ -211,6 +211,7 @@ void ofApp::fallingLetters(){
             if(letterPosY[i] > 10)
             {
                 ofSetColor(ofColor::red);
+                letterPosX += (rand()%10);
                 letterPosY[i]-=letterSpeed;
  
             }
