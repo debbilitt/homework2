@@ -72,16 +72,18 @@ void ofApp::draw(){
 	ofPushMatrix();
 //	ofTranslate(ofGetWidth()/2 - myColorImg.getWidth()/2,ofGetHeight()/2 - myColorImg.getHeight()/2);
 	if(bShowVideo){
-		myGrayDiff.draw(0,0);
-        myColorImg.draw(myGrayDiff.getWidth(),0);
+		//myGrayDiff.draw(0,0);
+        myColorImg.draw(0,0);
+        myGrayDiff.draw(myColorImg.getWidth(),0);
 	}
-
-
-    
     
     ofPopMatrix();
 
+    //draw falling rain
+    
     fallingLetters();
+    
+    ofDrawBitmapString("Press + and - to adjust Threshold", ofGetWidth()/2.0, ofGetHeight()-100.0);
 }
 
 //--------------------------------------------------------------
@@ -161,7 +163,12 @@ char ofApp::generateString(){
 
 
 void ofApp::fallingLetters(){
+    
+    //asign variable to get pixels of myGrayDiff
+    
     pix = myGrayDiff.getPixels();
+    
+    //deteremine letter spacing, position and speed
 
     float letterPosX = 0;
     int letterXSpace = vidGrabber.getWidth()/NRAIN;
@@ -170,25 +177,35 @@ void ofApp::fallingLetters(){
     
    // cout << letterXSpace << '/' ;
     
+  //loop to generte rain
+    
     for(int i=0; i<NRAIN; i++){
         
         int locX = letterPosX + ( i * letterXSpace);
         int locY = letterPosY[i];
+       
+        //lerp colors for shades of blue
+        firstColor = ofColor(0,5,127);
+        secondColor = ofColor(0,10,255);
         
-        ofDrawBitmapString("Press + and - to adjust Threshold", ofGetWidth()/2.0, ofGetHeight()-100.0);
+        lerpColor = secondColor.lerp(firstColor, i / 0.5);
+        
+        ofSetColor(lerpColor);
+        ofFill();
 
+        
         ofDrawBitmapString(letters[i], letterPosX, letterPosY[i]);
         
         letterPosX += letterXSpace;
         
-        float pixBrightness = pix.getColor(locX,locY).getBrightness();
+        float pixBrightness = pix.getColor(locX,locY).getBrightness(); //get pixel brightness
         
-        if(letterPosY[i] >= vidGrabber.getHeight() - 1)
+        if(letterPosY[i] >= vidGrabber.getHeight() - 1) //if letter is at the bottom of video, return to top
         {
             letterPosY[i] = 0;
         }
         
-        else if(pixBrightness > threshold)
+        else if(pixBrightness > threshold) //if pixel brightness is dark slow down letters and reverse speed
         {
             if(letterPosY[i] > 10)
             {
@@ -197,7 +214,7 @@ void ofApp::fallingLetters(){
         }
         else
         {
-            letterPosY[i]+=letterSpeed;
+            letterPosY[i]+=letterSpeed; //otherwise keep raining
         }
     }
 

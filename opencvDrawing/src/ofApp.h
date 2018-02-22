@@ -1,5 +1,7 @@
 #pragma once
 
+//WEB CAM FUNCTIONALITY ONLY
+
 #include "ofMain.h"
 
 #include "ofxOpenCv.h"

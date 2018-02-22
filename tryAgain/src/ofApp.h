@@ -4,6 +4,7 @@
 
 #include "ofxOpenCv.h"
 
+//WORKING FILE - USE FOR DEBUG
 
 #define NRAIN 50
 
@@ -43,7 +44,10 @@ class ofApp : public ofBaseApp{
        // float         pixBrightness;
         ofPixels                pix;
     
-
+        ofColor firstColor;
+        ofColor secondColor;
+        ofColor lerpColor;
+        ofColor mappedColor;
 
  
     float threshold = 80.0;
