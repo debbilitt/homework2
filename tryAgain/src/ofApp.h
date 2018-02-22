@@ -26,7 +26,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);		
-        char generateString();
+        string generateString();
         void fallingLetters();
 
     
@@ -48,10 +48,12 @@ class ofApp : public ofBaseApp{
         ofColor secondColor;
         ofColor lerpColor;
         ofColor mappedColor;
+    
+        ofTrueTypeFont myfont;
 
  
     float threshold = 80.0;
-    char letters [NRAIN] = {};
+    string letters [NRAIN] = {};
     
 
     float letterPosY [NRAIN] = {};

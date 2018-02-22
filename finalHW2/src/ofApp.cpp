@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    vidGrabber.setup(320,240); //set up video
+    vidGrabber.setup(ofGetWidth(),ofGetHeight()); //set up video
 	
     
     myColorImg.allocate(vidGrabber.getWidth(),vidGrabber.getHeight());
@@ -74,7 +74,7 @@ void ofApp::draw(){
 	if(bShowVideo){
 		//myGrayDiff.draw(0,0);
         myColorImg.draw(0,0);
-        myGrayDiff.draw(myColorImg.getWidth(),0);
+        //myGrayDiff.draw(myColorImg.getWidth(),0);
 	}
     
     ofPopMatrix();
@@ -182,7 +182,7 @@ void ofApp::fallingLetters(){
     for(int i=0; i<NRAIN; i++){
         
         int locX = letterPosX + ( i * letterXSpace);
-        int locY = letterPosY[i];
+        int locY = letterPosY[i] ;
        
         //lerp colors for shades of blue
         firstColor = ofColor(0,5,127);
@@ -190,11 +190,12 @@ void ofApp::fallingLetters(){
         
         lerpColor = secondColor.lerp(firstColor, i / 0.5);
         
-        ofSetColor(lerpColor);
-        ofFill();
+
 
         
         ofDrawBitmapString(letters[i], letterPosX, letterPosY[i]);
+        ofSetColor(lerpColor);
+        ofFill();
         
         letterPosX += letterXSpace;
         
@@ -209,7 +210,9 @@ void ofApp::fallingLetters(){
         {
             if(letterPosY[i] > 10)
             {
+                ofSetColor(ofColor::red);
                 letterPosY[i]-=letterSpeed;
+ 
             }
         }
         else

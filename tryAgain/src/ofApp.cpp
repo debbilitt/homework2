@@ -4,7 +4,7 @@
 void ofApp::setup(){
     
     vidGrabber.setup(320,240); //set up video
-	
+	myfont.loadFont("arial.ttf", 32);
     
     myColorImg.allocate(vidGrabber.getWidth(),vidGrabber.getHeight());
 	myGrayImage.allocate(vidGrabber.getWidth(),vidGrabber.getHeight());
@@ -155,9 +155,9 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
-char ofApp::generateString(){
-    char string[4] = {'R','A','I','N'};
-    char currentChar = string[rand() % 5];
+string ofApp::generateString(){
+    std::string string[4] = {"R","A","I","N"};
+    std::string currentChar = string[rand() % 5];
     return currentChar;
 }
 
@@ -193,8 +193,9 @@ void ofApp::fallingLetters(){
         ofSetColor(lerpColor);
         ofFill();
 
-        
-        ofDrawBitmapString(letters[i], letterPosX, letterPosY[i]);
+        myfont.drawString(letters[i], letterPosX,letterPosY[i]);
+
+       // ofDrawBitmapString(letters[i], letterPosX, letterPosY[i]);
         
         letterPosX += letterXSpace;
         
