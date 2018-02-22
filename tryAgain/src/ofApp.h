@@ -5,6 +5,8 @@
 #include "ofxOpenCv.h"
 
 
+#define NRAIN 50
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -23,6 +25,8 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);		
+        char generateString();
+        void fallingLetters();
 
     
         ofVideoGrabber 		vidGrabber;
@@ -39,15 +43,18 @@ class ofApp : public ofBaseApp{
        // float         pixBrightness;
         ofPixels                pix;
     
-		int 				threshold;
-		bool				bLearnBackground;
-		bool				bShowVideo = true;
+
+
+ 
+    float threshold = 80.0;
+    char letters [NRAIN] = {};
     
-        float posX;
-        float posY;
-        int velocity;
+
+    float letterPosY [NRAIN] = {};
+
     
-        float letterXspace;
+    bool                bLearnBackground;
+    bool                bShowVideo = true;
     
 
 };

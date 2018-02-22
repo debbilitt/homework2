@@ -19,10 +19,10 @@ void ofApp::setup(){
     
     //define posX and posY and velocity of circle
     
-    posX = 100;
-    posY = 0;
-    
-    velocity = 5;
+    //set up text rain
+    for(int i=0; i<NRAIN; i++){
+        letters[i] = generateString();
+    };
     
     
 
@@ -59,28 +59,6 @@ void ofApp::update(){
 		contourFinder.findContours(myGrayDiff, 20, (340*240)/3, 1, false);
     }
     
-    //set posY to increase with velocity
-    posY += velocity;
-    
-    //returns ball to top if it goes off screen
-    
-    if(posY > ofGetHeight()) {
-        posX = 100;
-        posY = 0;
-    }
-    
-    // setting variable to myGrayDiff pixels
-    pix = myGrayDiff.getPixels();
-    
-    //if the posX and posY position are over a pixel that is dark, stop movement
-    
-    if(pix.getColor(posX,posY).getBrightness() > threshold ) {
-     velocity = 0;
-    } else {
-     
-    velocity = 3; //else keep moving
-    
-    }
 
 
 }
@@ -100,17 +78,10 @@ void ofApp::draw(){
 
 
     
-    ofSetColor(ofColor::lightSeaGreen);
-    ofFill();
-    ofDrawCircle(posX, posY, 10);
-    ofDrawCircle(posX+myGrayDiff.getWidth(), posY, 10);
-
-        
-        
+    
     ofPopMatrix();
 
-    
-    ofDrawBitmapString("Press + and - to adjust Threshold", ofGetWidth()/2.0, ofGetHeight()-100.0);
+    fallingLetters();
 }
 
 //--------------------------------------------------------------
@@ -179,5 +150,55 @@ void ofApp::gotMessage(ofMessage msg){
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
+
+char ofApp::generateString(){
+    char string[4] = {'R','A','I','N'};
+    char currentChar = string[rand() % 5];
+    return currentChar;
+}
+
+
+void ofApp::fallingLetters(){
+    pix = myGrayDiff.getPixels();
+
+    float letterPosX = 0;
+    int letterXSpace = vidGrabber.getWidth()/NRAIN;
+    float letterSpeed = 1;
+
+    
+   // cout << letterXSpace << '/' ;
+    
+    for(int i=0; i<NRAIN; i++){
+        
+        int locX = letterPosX + ( i * letterXSpace);
+        int locY = letterPosY[i];
+        
+        ofDrawBitmapString("Press + and - to adjust Threshold", ofGetWidth()/2.0, ofGetHeight()-100.0);
+
+        ofDrawBitmapString(letters[i], letterPosX, letterPosY[i]);
+        
+        letterPosX += letterXSpace;
+        
+        float pixBrightness = pix.getColor(locX,locY).getBrightness();
+        
+        if(letterPosY[i] >= vidGrabber.getHeight() - 1)
+        {
+            letterPosY[i] = 0;
+        }
+        
+        else if(pixBrightness > threshold)
+        {
+            if(letterPosY[i] > 10)
+            {
+                letterPosY[i]-=letterSpeed;
+            }
+        }
+        else
+        {
+            letterPosY[i]+=letterSpeed;
+        }
+    }
 
 }
