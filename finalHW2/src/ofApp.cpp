@@ -17,8 +17,6 @@ void ofApp::setup(){
 	ofSetBackgroundAuto(false);
     
     
-    //define posX and posY and velocity of circle
-    
     //set up text rain
     for(int i=0; i<NRAIN; i++){
         letters[i] = generateString();
@@ -70,10 +68,10 @@ void ofApp::draw(){
 	ofSetHexColor(0xffffff);
     
 	ofPushMatrix();
-//	ofTranslate(ofGetWidth()/2 - myColorImg.getWidth()/2,ofGetHeight()/2 - myColorImg.getHeight()/2);
+    
 	if(bShowVideo){
 		//myGrayDiff.draw(0,0);
-        myColorImg.draw(0,0);
+         myColorImg.draw(0,0);
         //myGrayDiff.draw(myColorImg.getWidth(),0);
 	}
     
@@ -83,7 +81,11 @@ void ofApp::draw(){
     
     fallingLetters();
     
+    ofPushMatrix();
+    ofSetColor(ofColor::darkBlue);
+    ofFill();
     ofDrawBitmapString("Press + and - to adjust Threshold", ofGetWidth()/2.0, ofGetHeight()-100.0);
+    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
@@ -102,6 +104,7 @@ void ofApp::keyPressed(int key){
 			threshold --;
 			if (threshold < 0) threshold = 0;
 			break;
+  
 	}
 }
 
@@ -190,9 +193,6 @@ void ofApp::fallingLetters(){
         
         lerpColor = secondColor.lerp(firstColor, i / 0.5);
         
-
-
-        
         ofDrawBitmapString(letters[i], letterPosX, letterPosY[i]);
         ofSetColor(lerpColor);
         ofFill();
@@ -210,8 +210,8 @@ void ofApp::fallingLetters(){
         {
             if(letterPosY[i] > 10)
             {
-                ofSetColor(ofColor::red);
-                letterPosX += (rand()%10);
+                ofSetColor(ofColor::antiqueWhite);
+                letterPosX += (rand()%2);
                 letterPosY[i]-=letterSpeed;
  
             }

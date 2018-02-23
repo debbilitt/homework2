@@ -6,7 +6,6 @@
 
 #include "ofxOpenCv.h"
 
-
 #define NRAIN 50
 
 class ofApp : public ofBaseApp{
@@ -32,29 +31,31 @@ class ofApp : public ofBaseApp{
 
     
         ofVideoGrabber 		vidGrabber;
-	
+    
+    //openCV variables
+    
         ofxCvColorImage			myColorImg;
-
         ofxCvGrayscaleImage 	myGrayImage;
 		ofxCvGrayscaleImage 	myBackground;
 		ofxCvGrayscaleImage 	myGrayDiff;
-
         ofxCvContourFinder 	contourFinder;
 
     
-       // float         pixBrightness;
         ofPixels                pix;
+ 
+  
+    //color lerp variables
+    
     
         ofColor firstColor;
         ofColor secondColor;
         ofColor lerpColor;
         ofColor mappedColor;
 
- 
-    float threshold = 80.0;
-    char letters [NRAIN] = {};
+    //rain variables
     
-
+    float threshold = 170.0;
+    char letters [NRAIN] = {};
     float letterPosY [NRAIN] = {};
 
     
